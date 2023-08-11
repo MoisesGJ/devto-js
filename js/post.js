@@ -31,8 +31,6 @@ const renderPost = (data) => {
   createUniquePost('author-post', author, false);
   createUniquePost('picauthor-post', profilePic, true);
 
-  //createUniquePost('picauthor-nav', localStorage.getItem('image');, true);
-
   createUniquePost('date-post', date, false);
   createUniquePost('img-post', img, true);
   createUniquePost('title-post', title, false);

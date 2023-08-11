@@ -1,7 +1,11 @@
-import { createPost, createSimplePost } from './modules/elements.js';
+import {
+  createPost,
+  createSimplePost,
+  groupTagPosts,
+  asidePosts,
+} from './modules/elements.js';
 import { getPosts } from './modules/api.js';
 import { orderData } from './modules/orders.js';
-import { renderAside } from './modules/Aside.js';
 import { tokenValidation } from './modules/auth.js';
 
 let loggedButtonsValidation = document.getElementById(
@@ -25,9 +29,13 @@ const processData = async () => {
   return array;
 };
 
-const data = await processData();
-
 const main = document.getElementById('cards-main');
+
+const cleanMain = () => {
+  main.innerHTML = '';
+};
+
+const data = await processData();
 
 const renderData = (array) => {
   let count = 0;
@@ -45,11 +53,29 @@ const renderData = (array) => {
   document.getElementById('no-data').classList.add('d-none');
 };
 
-renderData(orderData(data, 'relevant'));
+const renderPostAside = (data) => {
+  const random = Math.floor(Math.random() * data.length);
+  const asidemain = document.getElementById('aside__main');
+  const post = createSimplePost(data[random]);
 
-const cleanMain = () => {
-  main.innerHTML = '';
+  asidemain.appendChild(post);
 };
+
+const renderPostsTagAside = (data) => {
+  const asidemain = document.getElementById('aside__main');
+  const container = groupTagPosts('discuss');
+
+  data.forEach((datita) => {
+    const post = asidePosts(datita);
+    container.appendChild(post);
+  });
+
+  asidemain.appendChild(container);
+};
+
+renderData(orderData(data, 'relevant'));
+renderPostAside(data, 'aside__main');
+renderPostsTagAside(data);
 
 const order = document.querySelectorAll('.data-item');
 let orderactive = document.querySelector('.main__title__selected');
@@ -70,14 +96,12 @@ order.forEach((item) => {
   });
 });
 
-// Registrar lo que se escribe en el input
 document.getElementById('search-input').addEventListener('keyup', (event) => {
   let value = event.target.value;
   let filteredData = data.filter((item) =>
     item.title.toLowerCase().includes(value.toLowerCase())
   );
   cleanMain();
-  // renderData(orderData(filteredData, 'relevant'));
   renderData(filteredData);
 
   const nodata = document.getElementById('no-data');
@@ -94,15 +118,3 @@ document.getElementById('search-input').addEventListener('keyup', (event) => {
     nodata.classList.add('d-none');
   }
 });
-
-renderAside(data, 'aside__main');
-//Aside
-const renderPostAside = (data) => {
-  const random = Math.floor(Math.random() * data.length);
-  const asidemain = document.getElementById('aside__main');
-  const post = createSimplePost(data[random]);
-
-  asidemain.prepend(post);
-};
-
-renderPostAside(data, 'aside__main');

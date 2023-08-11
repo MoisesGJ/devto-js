@@ -524,6 +524,41 @@ const createLoggedButtons = () => {
   return loggedButtonsContainer;
 };
 
+const groupTagPosts = (title) => {
+  const tagList = document.createElement('ul');
+  tagList.classList.add('list-group', 'mb-4');
+  const tagTitle = document.createElement('li');
+  tagTitle.classList.add('list-group-item', 'fw-bold');
+  tagTitle.textContent = `#${title}`;
+  tagList.appendChild(tagTitle);
+
+  return tagList;
+};
+
+const asidePosts = (data) => {
+  const { id, title } = data;
+
+  const listItem = document.createElement('li');
+  listItem.classList.add('list-group-item');
+  listItem.style.cssText = 'cursor: pointer';
+
+  listItem.addEventListener('click', () => {
+    redirectToPostDetail(id);
+  });
+
+  const titleElement = document.createElement('h5');
+  titleElement.textContent = title;
+
+  const commentsElement = document.createElement('p');
+  commentsElement.classList.add('mb-0', 'comments-text'); // Agregar la clase "comments-text"
+  commentsElement.textContent = '0 comentarios';
+
+  listItem.appendChild(titleElement);
+  listItem.appendChild(commentsElement);
+
+  return listItem;
+};
+
 export {
   createPost,
   createUniquePost,
@@ -531,4 +566,6 @@ export {
   createSimplePost,
   createLogoutedButtons,
   createLoggedButtons,
+  groupTagPosts,
+  asidePosts,
 };
