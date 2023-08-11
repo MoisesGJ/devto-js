@@ -97,8 +97,8 @@ order.forEach((item) => {
 });
 
 document.getElementById('search-input').addEventListener('keyup', (event) => {
-  let value = event.target.value;
-  let filteredData = data.filter((item) =>
+  const value = event.target.value;
+  const filteredData = data.filter((item) =>
     item.title.toLowerCase().includes(value.toLowerCase())
   );
   cleanMain();
@@ -108,6 +108,10 @@ document.getElementById('search-input').addEventListener('keyup', (event) => {
 
   if (value.length === 0) {
     orderactive.classList.add('main__title__selected');
+
+    cleanMain();
+
+    renderData(curentdata ? curentdata : orderData(data, 'relevant'));
   } else {
     orderactive.classList.remove('main__title__selected');
   }
