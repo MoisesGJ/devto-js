@@ -3,3 +3,7 @@ body {
     font-family: Helvetica !important;
 
 }
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
