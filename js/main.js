@@ -3,16 +3,22 @@ import {
   createSimplePost,
   groupTagPosts,
   asidePosts,
+  createUnloggAside,
 } from './modules/elements.js';
 import { getPosts } from './modules/api.js';
 import { orderData, orderAside } from './modules/orders.js';
-import { tokenValidation } from './modules/auth.js';
+import { tokenValidation, booleanAuth } from './modules/auth.js';
 
 let loggedButtonsValidation = document.getElementById(
   'authentication-top-nav-actions'
 );
 loggedButtonsValidation.innerHTML = '';
 loggedButtonsValidation.append(tokenValidation());
+
+if (!booleanAuth()) {
+  const firstaside = document.getElementById('first-aside');
+  firstaside.prepend(createUnloggAside());
+}
 
 const processData = async () => {
   const dataposts = await getPosts();

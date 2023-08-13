@@ -60,6 +60,7 @@ const createPost = (data, isfirst) => {
   imgprincipal.src = img;
   imgprincipal.classList.add('card-img-top');
   imgprincipal.style.height = '250px';
+  imgprincipal.style.cssText = 'object-fit: cover';
 
   isfirst && divpadre.appendChild(imgprincipal);
 
@@ -526,6 +527,41 @@ const createLoggedButtons = () => {
   return loggedButtonsContainer;
 };
 
+const createUnloggAside = () => {
+  const container = document.createElement('div');
+  container.classList.add('card', 'm-md-3');
+
+  const cardbody = document.createElement('div');
+  cardbody.classList.add('card-body');
+
+  const title = document.createElement('h4');
+  title.innerText =
+    'DEV Community is a community of 1,118,997 amazing developers ';
+  title.classList.add('card-title', 'fw-bold', 'mb-3');
+
+  const p = document.createElement('p');
+  p.innerText = `We're a place where coders share, stay up-to-date and grow their careers.`;
+  p.classList.add('card-text', 'mb-3');
+
+  const btncontainer = document.createElement('div');
+  btncontainer.classList.add('d-flex', 'flex-column');
+
+  const btncreate = document.createElement('button');
+  btncreate.innerText = 'Create account';
+  btncreate.classList.add('btn', 'btn-outline-primary');
+
+  const btnlogin = document.createElement('button');
+  btnlogin.innerText = 'Log in';
+  btnlogin.classList.add('btn');
+
+  btncontainer.append(btncreate, btnlogin);
+  cardbody.append(title, p, btncontainer);
+
+  container.appendChild(cardbody);
+
+  return container;
+};
+
 const groupTagPosts = (title) => {
   const tagList = document.createElement('ul');
   tagList.classList.add('list-group', 'mb-4');
@@ -568,6 +604,7 @@ export {
   createSimplePost,
   createLogoutedButtons,
   createLoggedButtons,
+  createUnloggAside,
   groupTagPosts,
   asidePosts,
 };
