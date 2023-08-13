@@ -1,17 +1,8 @@
-const orderTop = (array) => {
-  const newarray = [...array];
-  return newarray.sort((a, b) => b['rank'] - a['rank']);
-};
+const orderTop = (array) => array.toSorted((a, b) => b['rank'] - a['rank']);
 
-const orderRelevant = (array) => {
-  const newarray = [...array];
-  return newarray.filter((post) => post['relevant']);
-};
+const orderRelevant = (array) => array.filter((post) => post['relevant']);
 
-const orderLatest = (array) => {
-  const newarray = [...array];
-  return newarray.toReversed();
-};
+const orderLatest = (array) => array.toReversed();
 
 const orderData = (array, typeorder) => {
   let processarray;
