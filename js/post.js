@@ -28,6 +28,8 @@ const renderPost = (data) => {
     content,
   } = data;
 
+  document.title = title;
+
   createUniquePost('author-post', author, false);
   createUniquePost('picauthor-post', profilePic, true);
 

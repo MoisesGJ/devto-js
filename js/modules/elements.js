@@ -59,6 +59,7 @@ const createPost = (data, isfirst) => {
   const imgprincipal = document.createElement('img');
   imgprincipal.src = img;
   imgprincipal.classList.add('card-img-top');
+  imgprincipal.style.height = '250px';
 
   isfirst && divpadre.appendChild(imgprincipal);
 
@@ -220,6 +221,7 @@ const createSimplePost = (data) => {
   const imgprincipal = document.createElement('img');
   imgprincipal.src = img;
   imgprincipal.classList.add('card-img-top');
+  imgprincipal.style.height = '125px';
 
   divpadre.appendChild(imgprincipal);
 
