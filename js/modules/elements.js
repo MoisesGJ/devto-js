@@ -60,7 +60,7 @@ const createPost = (data, isfirst) => {
   imgprincipal.src = img;
   imgprincipal.classList.add('card-img-top');
   imgprincipal.style.height = '250px';
-  imgprincipal.style.cssText = 'object-fit: cover';
+  imgprincipal.style.objectFit = 'cover';
 
   isfirst && divpadre.appendChild(imgprincipal);
 
@@ -223,6 +223,7 @@ const createSimplePost = (data) => {
   imgprincipal.src = img;
   imgprincipal.classList.add('card-img-top');
   imgprincipal.style.height = '125px';
+  imgprincipal.style.objectFit = 'cover';
 
   divpadre.appendChild(imgprincipal);
 
