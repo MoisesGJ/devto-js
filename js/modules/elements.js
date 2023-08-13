@@ -529,12 +529,15 @@ const createLoggedButtons = () => {
 
 const createUnloggAside = () => {
   const container = document.createElement('div');
-  container.classList.add('card', 'm-md-3');
+  container.classList.add('px-2', 'px-md-3');
+
+  const card = document.createElement('div');
+  card.classList.add('card');
 
   const cardbody = document.createElement('div');
   cardbody.classList.add('card-body');
 
-  const title = document.createElement('h4');
+  const title = document.createElement('h5');
   title.innerText =
     'DEV Community is a community of 1,118,997 amazing developers ';
   title.classList.add('card-title', 'fw-bold', 'mb-3');
@@ -556,8 +559,9 @@ const createUnloggAside = () => {
 
   btncontainer.append(btncreate, btnlogin);
   cardbody.append(title, p, btncontainer);
+  card.appendChild(cardbody);
 
-  container.appendChild(cardbody);
+  container.appendChild(card);
 
   return container;
 };
