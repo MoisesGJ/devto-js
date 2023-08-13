@@ -543,7 +543,7 @@ const asidePosts = (data) => {
   listItem.style.cssText = 'cursor: pointer';
 
   listItem.addEventListener('click', () => {
-    redirectToPostDetail(id);
+    window.open(`./views/post.html?id=${id}`, '_self');
   });
 
   const titleElement = document.createElement('h5');

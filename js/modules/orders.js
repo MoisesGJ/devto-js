@@ -4,6 +4,9 @@ const orderRelevant = (array) => array.filter((post) => post['relevant']);
 
 const orderLatest = (array) => array.toReversed();
 
+const orderAside = (array, tagsbase) =>
+  array.filter(({ tags }) => tags.find((element) => element === tagsbase));
+
 const orderData = (array, typeorder) => {
   let processarray;
   switch (typeorder) {
@@ -20,4 +23,4 @@ const orderData = (array, typeorder) => {
   return processarray;
 };
 
-export { orderData };
+export { orderData, orderAside };

@@ -5,7 +5,7 @@ import {
   asidePosts,
 } from './modules/elements.js';
 import { getPosts } from './modules/api.js';
-import { orderData } from './modules/orders.js';
+import { orderData, orderAside } from './modules/orders.js';
 import { tokenValidation } from './modules/auth.js';
 
 let loggedButtonsValidation = document.getElementById(
@@ -61,26 +61,28 @@ const renderPostAside = (data) => {
   asidemain.appendChild(post);
 };
 
-const renderPostsTagAside = (data) => {
+const renderPostsTagAside = (data, tag) => {
   const asidemain = document.getElementById('aside__main');
-  const container = groupTagPosts('discuss');
+  const container = groupTagPosts(tag);
 
-  data.forEach((datita) => {
-    const post = asidePosts(datita);
-    container.appendChild(post);
-  });
+  data.forEach((post) => container.appendChild(asidePosts(post)));
 
   asidemain.appendChild(container);
 };
 
 renderData(orderData(data, 'relevant'));
 renderPostAside(data, 'aside__main');
-renderPostsTagAside(data);
 
-const order = document.querySelectorAll('.data-item');
+const firsttag = 'html';
+const secondtag = 'css';
+
+renderPostsTagAside(orderAside(data, firsttag), firsttag);
+renderPostsTagAside(orderAside(data, secondtag), secondtag);
+
 let orderactive = document.querySelector('.main__title__selected');
 let curentdata;
 
+const order = document.querySelectorAll('.data-item');
 order.forEach((item) => {
   item.addEventListener('click', ({ target }) => {
     if (orderactive !== item) {
