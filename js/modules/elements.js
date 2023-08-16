@@ -356,6 +356,8 @@ const createLogoutedButtons = () => {
   loginButton.classList.add(
     'btn',
     'btn-outline-primary',
+    'text-dark',
+    'border-0',
     'd-none',
     'd-md-block'
   );
@@ -589,7 +591,7 @@ const createUnloggAside = () => {
 
   const btnlogin = document.createElement('button');
   btnlogin.innerText = 'Log in';
-  btnlogin.classList.add('btn');
+  btnlogin.classList.add('btn', 'btn-outline-primary', 'text-dark', 'border-0');
 
   btncontainer.append(btncreate, btnlogin);
   cardbody.append(title, p, btncontainer);
