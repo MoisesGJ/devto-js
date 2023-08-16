@@ -329,7 +329,12 @@ const createLogoutedButtons = () => {
   const logoutButtonsContainer = document.createElement('div');
 
   const loginButtonContainer = document.createElement('div');
-  loginButtonContainer.classList.add('d-flex', 'gap-3');
+  loginButtonContainer.classList.add('d-flex', 'gap-md-3');
+
+  //Search
+  const imgsearch = document.createElement('img');
+  imgsearch.src = '../sources/svg/search-icon.svg';
+  imgsearch.classList.add('d-md-none', 'my-auto', 'mx-2');
 
   const loginButtonSpan = document.createElement('span');
   loginButtonSpan.classList.add('hidden', 'm:block');
@@ -373,13 +378,10 @@ const createLogoutedButtons = () => {
   createAccountAnchorButton.setAttribute('data-no-instant', '');
 
   const createAccountButton = document.createElement('button');
-  createAccountButton.classList.add(
-    'btn',
-    'btn-outline-primary',
-    'd-none',
-    'd-md-block'
-  );
+  createAccountButton.classList.add('btn', 'btn-outline-primary');
   createAccountButton.innerText = 'Create Account';
+
+  loginButtonContainer.append(imgsearch);
 
   loginButtonAnchor.append(loginButton);
   loginButtonSpan.append(loginButtonAnchor);
@@ -400,7 +402,13 @@ const createLoggedButtons = () => {
   const loggedButtonsContainer = document.createElement('div');
   loggedButtonsContainer.classList.add('d-flex', 'gap-3');
 
+  //Search
+  const imgsearch = document.createElement('img');
+  imgsearch.src = '../sources/svg/search-icon.svg';
+  imgsearch.classList.add('d-md-none', 'my-auto');
+
   const createPostButtonContainer = document.createElement('div');
+  createPostButtonContainer.classList.add('d-none', 'd-md-block');
 
   const createPostAnchor = document.createElement('a');
   createPostAnchor.setAttribute('href', 'views/create.html');
@@ -409,9 +417,9 @@ const createLoggedButtons = () => {
   const createPostButton = document.createElement('button');
   createPostButton.classList.add(
     'btn',
-    'btn-outline-primary',
-    'd-none',
-    'd-md-block'
+    'btn-outline-primary'
+    /* 'd-none',
+    'd-md-block' */
   );
   createPostButton.innerText = 'Create Post';
 
@@ -464,9 +472,6 @@ const createLoggedButtons = () => {
 
   notificationsAnchor.innerHTML = htmlnotificationsSVG;
 
-  // LOGOUT BUTTON
-  const logoutButtonContainer = document.createElement('div');
-
   const logoutButtonSpan = document.createElement('span');
   logoutButtonSpan.classList.add('hidden', 'm:block');
 
@@ -481,23 +486,6 @@ const createLoggedButtons = () => {
     'text-decoration-none'
   );
   logoutButtonAnchor.setAttribute('data-no-instant', '');
-
-  /* const logoutButton = document.createElement('button');
-  logoutButton.addEventListener('click', (event) => {
-    event.preventDefault(); // method that cancels the event if it is cancelable
-    localStorage.removeItem('token');
-    localStorage.removeItem('author');
-    localStorage.removeItem('image');
-    window.open('../index.html', '_self');
-  });
-  logoutButton.setAttribute('id', 'logout-button');
-  logoutButton.classList.add(
-    'btn',
-    'btn-outline-primary',
-    'd-none',
-    'd-lg-block'
-  );
-  logoutButton.innerText = 'Log out'; */
 
   //Image user
   const imgcontainer = document.createElement('div');
@@ -565,8 +553,8 @@ const createLoggedButtons = () => {
 
   imgcontainer.append(imglog, dropmenu);
 
+  loggedButtonsContainer.append(imgsearch);
   loggedButtonsContainer.append(createPostButtonContainer);
-  loggedButtonsContainer.append(logoutButtonContainer);
   loggedButtonsContainer.append(notificationsContainer);
   loggedButtonsContainer.append(imgcontainer);
 
