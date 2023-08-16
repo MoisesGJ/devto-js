@@ -359,7 +359,8 @@ const createLogoutedButtons = () => {
     'text-dark',
     'border-0',
     'd-none',
-    'd-md-block'
+    'd-md-block',
+    'btn-login'
   );
   loginButton.innerText = 'Log in';
 
@@ -589,9 +590,24 @@ const createUnloggAside = () => {
   btncreate.innerText = 'Create account';
   btncreate.classList.add('btn', 'btn-outline-primary');
 
+  btncreate.addEventListener('click', () =>
+    window.open('/views/login.html', '__self')
+  );
+
   const btnlogin = document.createElement('button');
   btnlogin.innerText = 'Log in';
-  btnlogin.classList.add('btn', 'btn-outline-primary', 'text-dark', 'border-0');
+  btnlogin.classList.add(
+    'btn',
+    'mt-1',
+    'btn-outline-primary',
+    'border-0',
+    'text-dark',
+    'btn-login'
+  );
+
+  btnlogin.addEventListener('click', () =>
+    window.open('/views/login.html', '__self')
+  );
 
   btncontainer.append(btncreate, btnlogin);
   cardbody.append(title, p, btncontainer);
