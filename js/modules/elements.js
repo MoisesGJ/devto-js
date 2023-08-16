@@ -334,7 +334,7 @@ const createLogoutedButtons = () => {
   //Search
   const imgsearch = document.createElement('img');
   imgsearch.src = '../sources/svg/search-icon.svg';
-  imgsearch.classList.add('d-md-none', 'my-auto', 'mx-2');
+  imgsearch.classList.add('d-md-none', 'my-auto', 'mx-3');
 
   const loginButtonSpan = document.createElement('span');
   loginButtonSpan.classList.add('hidden', 'm:block');
