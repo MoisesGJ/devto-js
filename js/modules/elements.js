@@ -482,7 +482,7 @@ const createLoggedButtons = () => {
   );
   logoutButtonAnchor.setAttribute('data-no-instant', '');
 
-  const logoutButton = document.createElement('button');
+  /* const logoutButton = document.createElement('button');
   logoutButton.addEventListener('click', (event) => {
     event.preventDefault(); // method that cancels the event if it is cancelable
     localStorage.removeItem('token');
@@ -497,18 +497,63 @@ const createLoggedButtons = () => {
     'd-none',
     'd-lg-block'
   );
-  logoutButton.innerText = 'Log out';
+  logoutButton.innerText = 'Log out'; */
 
   //Image user
   const imgcontainer = document.createElement('div');
+  imgcontainer.classList.add('btn-group');
+
   const imglog = document.createElement('img');
   imglog.src = localStorage.getItem('image');
   imglog.style.cssText = 'max-height: 40px;';
-  imglog.classList.add('navbar-nav', 'rounded-circle');
+  imglog.classList.add('navbar-nav', 'rounded-circle', 'dropdown-toggle');
+  imglog.setAttribute('data-bs-toggle', 'dropdown', 'show');
+  imglog.setAttribute('aria-expanded', 'true');
 
-  logoutButtonAnchor.append(logoutButton);
-  logoutButtonSpan.append(logoutButtonAnchor);
-  logoutButtonContainer.append(logoutButtonSpan);
+  const dropmenu = document.createElement('ul');
+  dropmenu.classList.add(
+    'dropdown-menu',
+    'dropdown-menu-end',
+    'dropdown__menu'
+  );
+  dropmenu.setAttribute('data-bs-popper', 'static');
+
+  const liuser = document.createElement('li');
+  const aliuser = document.createElement('a');
+  aliuser.classList.add('dropdown-item', 'd-flex', 'flex-column');
+  const spanaliuser = document.createElement('span');
+  spanaliuser.innerText = localStorage.getItem('author');
+
+  const smaliuser = document.createElement('small');
+  smaliuser.innerText = `@${localStorage.getItem('author').toLowerCase()}`;
+
+  aliuser.append(spanaliuser, smaliuser);
+  liuser.appendChild(aliuser);
+
+  const liseparater = document.createElement('li');
+
+  const separater = document.createElement('hr');
+  separater.classList.add('dropdown-divider');
+
+  liseparater.appendChild(separater);
+
+  const lilogout = document.createElement('li');
+  const alilogout = document.createElement('a');
+  alilogout.classList.add('btn');
+  alilogout.innerText = 'Sign out';
+
+  lilogout.appendChild(alilogout);
+
+  lilogout.addEventListener('click', (event) => {
+    event.preventDefault(); // method that cancels the event if it is cancelable
+    localStorage.removeItem('token');
+    localStorage.removeItem('author');
+    localStorage.removeItem('image');
+    window.open('../index.html', '_self');
+  });
+  /* lilogout.setAttribute('id', 'logout-button'); */
+
+  dropmenu.append(liuser, liseparater, lilogout);
 
   notificationsContainer.append(notificationsAnchor);
 
@@ -518,7 +563,7 @@ const createLoggedButtons = () => {
   createPostAnchor.append(createPostButton);
   createPostButtonContainer.append(createPostAnchor);
 
-  imgcontainer.appendChild(imglog);
+  imgcontainer.append(imglog, dropmenu);
 
   loggedButtonsContainer.append(createPostButtonContainer);
   loggedButtonsContainer.append(logoutButtonContainer);
