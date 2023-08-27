@@ -18,6 +18,9 @@ loggedButtonsValidation.append(tokenValidation());
 if (!booleanAuth()) {
   const firstaside = document.getElementById('first-aside');
   firstaside.prepend(createUnloggAside());
+
+  const mobilemenu = document.getElementById('menu-burguer');
+  mobilemenu.prepend(createUnloggAside());
 }
 
 const processData = async () => {
