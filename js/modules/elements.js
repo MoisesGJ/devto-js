@@ -42,6 +42,21 @@ const createTags = (arrtags) => {
   return container;
 };
 
+const limenu = (str) => {
+  const li = document.createElement('li');
+
+  if (str === 'separater') {
+    const separater = document.createElement('hr');
+    separater.classList.add('dropdown-divider');
+
+    li.appendChild(separater);
+  } else {
+    li.innerText = str;
+    li.classList.add('dropdown-item', 'btn');
+  }
+  return li;
+};
+
 const createPost = (data, isfirst) => {
   const { id, author, profilePic, date, img, title, tags, comments, readtime } =
     data;
@@ -336,6 +351,13 @@ const createLogoutedButtons = () => {
   imgsearch.src = '../sources/svg/search-icon.svg';
   imgsearch.classList.add('d-md-none', 'my-auto', 'mx-3');
 
+  imgsearch.addEventListener('click', () => {
+    const input = document.getElementById('input-search');
+
+    input.classList.toggle('d-none');
+    console.log('hoal');
+  });
+
   const loginButtonSpan = document.createElement('span');
   loginButtonSpan.classList.add('hidden', 'm:block');
 
@@ -409,6 +431,13 @@ const createLoggedButtons = () => {
   const imgsearch = document.createElement('img');
   imgsearch.src = '../sources/svg/search-icon.svg';
   imgsearch.classList.add('d-md-none', 'my-auto');
+
+  imgsearch.addEventListener('click', () => {
+    const input = document.getElementById('input-search');
+
+    input.classList.toggle('d-none');
+    console.log('hoal');
+  });
 
   const createPostButtonContainer = document.createElement('div');
   createPostButtonContainer.classList.add('d-none', 'd-md-block');
@@ -521,13 +550,6 @@ const createLoggedButtons = () => {
   aliuser.append(spanaliuser, smaliuser);
   liuser.appendChild(aliuser);
 
-  const liseparater = document.createElement('li');
-
-  const separater = document.createElement('hr');
-  separater.classList.add('dropdown-divider');
-
-  liseparater.appendChild(separater);
-
   const lilogout = document.createElement('li');
   const alilogout = document.createElement('a');
   alilogout.classList.add('btn');
@@ -544,7 +566,16 @@ const createLoggedButtons = () => {
   });
   /* lilogout.setAttribute('id', 'logout-button'); */
 
-  dropmenu.append(liuser, liseparater, lilogout);
+  dropmenu.append(
+    liuser,
+    limenu('separater'),
+    limenu('Dashboard'),
+    limenu('Create Post'),
+    limenu('Reading list'),
+    limenu('Settings'),
+    limenu('separater'),
+    lilogout
+  );
 
   notificationsContainer.append(notificationsAnchor);
 

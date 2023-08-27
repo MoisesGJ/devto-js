@@ -104,29 +104,34 @@ order.forEach((item) => {
   });
 });
 
-document.getElementById('search-input').addEventListener('keyup', (event) => {
-  const value = event.target.value;
-  const filteredData = data.filter((item) =>
-    item.title.toLowerCase().includes(value.toLowerCase())
-  );
-  cleanMain();
-  renderData(filteredData);
+const inputs = document.querySelectorAll('.input-main');
 
-  const nodata = document.getElementById('no-data');
-
-  if (value.length === 0) {
-    orderactive.classList.add('main__title__selected');
-
+inputs.forEach((input) => {
+  input.addEventListener('keyup', (event) => {
+    console.log('Hola');
+    const value = event.target.value;
+    const filteredData = data.filter((item) =>
+      item.title.toLowerCase().includes(value.toLowerCase())
+    );
     cleanMain();
+    renderData(filteredData);
 
-    renderData(curentdata ? curentdata : orderData(data, 'relevant'));
-  } else {
-    orderactive.classList.remove('main__title__selected');
-  }
+    const nodata = document.getElementById('no-data');
 
-  if (filteredData.length === 0) {
-    nodata.classList.remove('d-none');
-  } else {
-    nodata.classList.add('d-none');
-  }
+    if (value.length === 0) {
+      orderactive.classList.add('main__title__selected');
+
+      cleanMain();
+
+      renderData(curentdata ? curentdata : orderData(data, 'relevant'));
+    } else {
+      orderactive.classList.remove('main__title__selected');
+    }
+
+    if (filteredData.length === 0) {
+      nodata.classList.remove('d-none');
+    } else {
+      nodata.classList.add('d-none');
+    }
+  });
 });
