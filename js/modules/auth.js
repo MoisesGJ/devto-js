@@ -1,4 +1,4 @@
-import { createLogoutedButtons, createLoggedButtons } from './navbar.js';
+import { createLogoutedButtons, createLoggedButtons } from './elements.js';
 
 const token = localStorage.getItem('token');
 const tokenValidation = () =>

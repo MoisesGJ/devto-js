@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,8 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/style-index.css" />
   </head>
   <body>
     <!-- NAV -->
@@ -38,7 +39,9 @@
               />
             </a>
 
-            <div class="d-none d-md-block m-auto nav__form__container">
+            <div
+              class="d-none d-md-block m-auto nav__form__container input-main"
+            >
               <form class="d-flex form__search" role="search">
                 <div class="input-group">
                   <input
@@ -54,22 +57,7 @@
                       class="bg-white border-1 border-start-0 rounded-0 rounded-end input-group-text search__hover"
                       id="basic-addon1"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        role="img"
-                        aria-labelledby="agtkixkainaiofuhj4o3hunp3uvwl1y6"
-                        class="crayons-icon"
-                      >
-                        <title id="agtkixkainaiofuhj4o3hunp3uvwl1y6">
-                          Search
-                        </title>
-                        <path
-                          d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"
-                        ></path>
-                      </svg>
+                      <img src="sources/svg/search-icon.svg" alt="" />
                     </span>
                   </button>
                 </div>
@@ -98,7 +86,7 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div class="offcanvas-body">
+            <div class="offcanvas-body" id="menu-burguer">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li>
                   <a href="/" class="nav-link active">
@@ -1050,9 +1038,35 @@
       </nav>
     </header>
     <!-- MAIN & ASIDES -->
+    <div
+      class="d-none d-md-none m-auto mt-2 input-main"
+      style="width: 75%"
+      id="input-search"
+    >
+      <form class="d-flex form__search" role="search">
+        <div class="input-group">
+          <input
+            id="search-input2"
+            type="text"
+            class="form-control border-end-0"
+            placeholder="Search..."
+            aria-label="Buscar"
+            aria-describedby="basic-addon1"
+          />
+          <button class="border-0 bg-white p-0 search__button">
+            <span
+              class="bg-white border-1 border-start-0 rounded-0 rounded-end input-group-text search__hover"
+              id="basic-addon1"
+            >
+              <img src="sources/svg/search-icon.svg" alt="" />
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
     <div class="aside-menu container-xl mt-md-3">
       <div class="row">
-        <aside class="col-3 d-none d-md-block mt-3 p-0">
+        <aside class="col-3 d-none d-md-block mt-3 p-0" id="first-aside">
           <div class="ctn-list-item mx-0 d-flex flex-column">
             <ul class="mx-0 ps-4">
               <li class="d-flex">

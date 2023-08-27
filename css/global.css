@@ -3,3 +3,13 @@ body {
     font-family: Helvetica !important;
 
 }
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.btn-login:hover {
+    background-color: #ebecfc !important;
+    text-decoration: underline;
+    color: blue !important;
+}

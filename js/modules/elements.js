@@ -42,6 +42,21 @@ const createTags = (arrtags) => {
   return container;
 };
 
+const limenu = (str) => {
+  const li = document.createElement('li');
+
+  if (str === 'separater') {
+    const separater = document.createElement('hr');
+    separater.classList.add('dropdown-divider');
+
+    li.appendChild(separater);
+  } else {
+    li.innerText = str;
+    li.classList.add('dropdown-item', 'btn');
+  }
+  return li;
+};
+
 const createPost = (data, isfirst) => {
   const { id, author, profilePic, date, img, title, tags, comments, readtime } =
     data;
@@ -59,6 +74,8 @@ const createPost = (data, isfirst) => {
   const imgprincipal = document.createElement('img');
   imgprincipal.src = img;
   imgprincipal.classList.add('card-img-top');
+  imgprincipal.style.height = '250px';
+  imgprincipal.style.objectFit = 'cover';
 
   isfirst && divpadre.appendChild(imgprincipal);
 
@@ -220,6 +237,8 @@ const createSimplePost = (data) => {
   const imgprincipal = document.createElement('img');
   imgprincipal.src = img;
   imgprincipal.classList.add('card-img-top');
+  imgprincipal.style.height = '125px';
+  imgprincipal.style.objectFit = 'cover';
 
   divpadre.appendChild(imgprincipal);
 
@@ -320,4 +339,359 @@ const createUniquePost = (elementid, value, image) => {
   image ? (currentelement.src = value) : (currentelement.innerText = value);
 };
 
-export { createPost, createUniquePost, createTags, createSimplePost };
+const createLogoutedButtons = () => {
+  // CREATE LOGIN BUTTON
+  const logoutButtonsContainer = document.createElement('div');
+
+  const loginButtonContainer = document.createElement('div');
+  loginButtonContainer.classList.add('d-flex', 'gap-md-3');
+
+  //Search
+  const imgsearch = document.createElement('img');
+  imgsearch.src = '../sources/svg/search-icon.svg';
+  imgsearch.classList.add('d-md-none', 'my-auto', 'mx-3');
+
+  imgsearch.addEventListener('click', () => {
+    const input = document.getElementById('input-search');
+
+    input.classList.toggle('d-none');
+    console.log('hoal');
+  });
+
+  const loginButtonSpan = document.createElement('span');
+  loginButtonSpan.classList.add('hidden', 'm:block');
+
+  const loginButtonAnchor = document.createElement('a');
+  loginButtonAnchor.setAttribute('href', '/views/login.html');
+  loginButtonAnchor.classList.add(
+    'c-link',
+    'c-link--block',
+    'mr-2',
+    'whitespace-nowrap',
+    'ml-auto',
+    'text-decoration-none'
+  );
+
+  loginButtonAnchor.setAttribute('data-no-instant', '');
+
+  const loginButton = document.createElement('button');
+  loginButton.classList.add(
+    'btn',
+    'btn-outline-primary',
+    'text-dark',
+    'border-0',
+    'd-none',
+    'd-md-block',
+    'btn-login'
+  );
+  loginButton.innerText = 'Log in';
+
+  // CREATE ACCOUNT BUTTON
+  const createAccountButtonContainer = document.createElement('div');
+
+  const createAccountAnchorButton = document.createElement('a');
+  createAccountAnchorButton.setAttribute('href', '/views/login.html');
+  createAccountAnchorButton.setAttribute('data-tracking-id', 'ca_top_nav');
+  createAccountAnchorButton.setAttribute('data-tracking-source', 'top_navbar');
+  createAccountAnchorButton.classList.add(
+    'c-cta',
+    'c-cta--branded',
+    'whitespace-nowrap',
+    'mr-2',
+    'text-decoration-none'
+  );
+  createAccountAnchorButton.setAttribute('data-no-instant', '');
+
+  const createAccountButton = document.createElement('button');
+  createAccountButton.classList.add('btn', 'btn-outline-primary');
+  createAccountButton.innerText = 'Create Account';
+
+  loginButtonContainer.append(imgsearch);
+
+  loginButtonAnchor.append(loginButton);
+  loginButtonSpan.append(loginButtonAnchor);
+  loginButtonContainer.append(loginButtonSpan);
+
+  createAccountAnchorButton.append(createAccountButton);
+  createAccountButtonContainer.append(createAccountAnchorButton);
+  loginButtonContainer.append(createAccountAnchorButton);
+
+  logoutButtonsContainer.append(loginButtonContainer);
+  logoutButtonsContainer.append(loginButtonContainer);
+
+  return loginButtonContainer;
+};
+
+const createLoggedButtons = () => {
+  // CREATE POST BUTTON
+  const loggedButtonsContainer = document.createElement('div');
+  loggedButtonsContainer.classList.add('d-flex', 'gap-3');
+
+  //Search
+  const imgsearch = document.createElement('img');
+  imgsearch.src = '../sources/svg/search-icon.svg';
+  imgsearch.classList.add('d-md-none', 'my-auto');
+
+  imgsearch.addEventListener('click', () => {
+    const input = document.getElementById('input-search');
+
+    input.classList.toggle('d-none');
+    console.log('hoal');
+  });
+
+  const createPostButtonContainer = document.createElement('div');
+  createPostButtonContainer.classList.add('d-none', 'd-md-block');
+
+  const createPostAnchor = document.createElement('a');
+  createPostAnchor.setAttribute('href', 'views/create.html');
+  createPostAnchor.classList.add('text-decoration-none');
+
+  const createPostButton = document.createElement('button');
+  createPostButton.classList.add(
+    'btn',
+    'btn-outline-primary'
+    /* 'd-none',
+    'd-md-block' */
+  );
+  createPostButton.innerText = 'Create Post';
+
+  const createPostSVG = document.createElement('svg');
+  createPostSVG.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  createPostSVG.setAttribute('width', '24');
+  createPostSVG.setAttribute('height', '24');
+  createPostSVG.setAttribute('viewbox', '0 0 24 24');
+  createPostSVG.setAttribute('role', 'img');
+  createPostSVG.setAttribute(
+    'aria-labelledby',
+    'agtkixkainaiofuhj4o3hunp3uvwl1y6'
+  );
+  createPostSVG.classList.add('crayons-icon', 'd-md-none', 'my-auto');
+
+  const createPostTitle = document.createElement('title');
+  createPostTitle.setAttribute('id', 'agtkixkainaiofuhj4o3hunp3uvwl1y6');
+  createPostTitle.innerText = 'Search';
+
+  const createPostPath = document.createElement('path');
+  createPostPath.setAttribute(
+    'd',
+    'M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z'
+  );
+
+  // CREATE NOTIFICATIONS
+  const notificationsContainer = document.createElement('div');
+  notificationsContainer.classList.add('d-flex', 'align-items-center');
+
+  const notificationsAnchor = document.createElement('a');
+  notificationsAnchor.setAttribute('href', '#');
+  notificationsAnchor.classList.add('navbar-nav');
+
+  const htmlnotificationsSVG = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  role="img"
+  aria-labelledby="a4gcjtvbhvh6eh4ee8qmpi1l37goznso"
+  class="crayons-icon"
+>
+  <title id="a4gcjtvbhvh6eh4ee8qmpi1l37goznso">
+    Notifications
+  </title>
+  <path
+    d="M20 17h2v2H2v-2h2v-7a8 8 0 1116 0v7zm-2 0v-7a6 6 0 10-12 0v7h12zm-9 4h6v2H9v-2z"
+  ></path>
+</svg>`;
+
+  notificationsAnchor.innerHTML = htmlnotificationsSVG;
+
+  const logoutButtonSpan = document.createElement('span');
+  logoutButtonSpan.classList.add('hidden', 'm:block');
+
+  const logoutButtonAnchor = document.createElement('a');
+  logoutButtonAnchor.setAttribute('href', '#');
+  logoutButtonAnchor.classList.add(
+    'c-link',
+    'c-link--block',
+    'mr-2',
+    'whitespace-nowrap',
+    'ml-auto',
+    'text-decoration-none'
+  );
+  logoutButtonAnchor.setAttribute('data-no-instant', '');
+
+  //Image user
+  const imgcontainer = document.createElement('div');
+  imgcontainer.classList.add('btn-group');
+
+  const imglog = document.createElement('img');
+  imglog.src = localStorage.getItem('image');
+  imglog.style.cssText = 'max-height: 40px;';
+  imglog.classList.add('navbar-nav', 'rounded-circle', 'dropdown-toggle');
+  imglog.setAttribute('data-bs-toggle', 'dropdown', 'show');
+  imglog.setAttribute('aria-expanded', 'true');
+
+  const dropmenu = document.createElement('ul');
+  dropmenu.classList.add(
+    'dropdown-menu',
+    'dropdown-menu-end',
+    'dropdown__menu'
+  );
+  dropmenu.setAttribute('data-bs-popper', 'static');
+
+  const liuser = document.createElement('li');
+  const aliuser = document.createElement('a');
+  aliuser.classList.add('dropdown-item', 'd-flex', 'flex-column');
+  const spanaliuser = document.createElement('span');
+  spanaliuser.innerText = localStorage.getItem('author');
+
+  const smaliuser = document.createElement('small');
+  smaliuser.innerText = `@${localStorage.getItem('author').toLowerCase()}`;
+
+  aliuser.append(spanaliuser, smaliuser);
+  liuser.appendChild(aliuser);
+
+  const lilogout = document.createElement('li');
+  const alilogout = document.createElement('a');
+  alilogout.classList.add('btn');
+  alilogout.innerText = 'Sign out';
+
+  lilogout.appendChild(alilogout);
+
+  lilogout.addEventListener('click', (event) => {
+    event.preventDefault(); // method that cancels the event if it is cancelable
+    localStorage.removeItem('token');
+    localStorage.removeItem('author');
+    localStorage.removeItem('image');
+    window.open('../index.html', '_self');
+  });
+  /* lilogout.setAttribute('id', 'logout-button'); */
+
+  dropmenu.append(
+    liuser,
+    limenu('separater'),
+    limenu('Dashboard'),
+    limenu('Create Post'),
+    limenu('Reading list'),
+    limenu('Settings'),
+    limenu('separater'),
+    lilogout
+  );
+
+  notificationsContainer.append(notificationsAnchor);
+
+  createPostTitle.append(createPostPath);
+  createPostSVG.append(createPostTitle);
+  createPostButton.append(createPostSVG);
+  createPostAnchor.append(createPostButton);
+  createPostButtonContainer.append(createPostAnchor);
+
+  imgcontainer.append(imglog, dropmenu);
+
+  loggedButtonsContainer.append(imgsearch);
+  loggedButtonsContainer.append(createPostButtonContainer);
+  loggedButtonsContainer.append(notificationsContainer);
+  loggedButtonsContainer.append(imgcontainer);
+
+  return loggedButtonsContainer;
+};
+
+const createUnloggAside = () => {
+  const container = document.createElement('div');
+  container.classList.add('px-2', 'px-md-3');
+
+  const card = document.createElement('div');
+  card.classList.add('card');
+
+  const cardbody = document.createElement('div');
+  cardbody.classList.add('card-body');
+
+  const title = document.createElement('h5');
+  title.innerText =
+    'DEV Community is a community of 1,118,997 amazing developers ';
+  title.classList.add('card-title', 'fw-bold', 'mb-3');
+
+  const p = document.createElement('p');
+  p.innerText = `We're a place where coders share, stay up-to-date and grow their careers.`;
+  p.classList.add('card-text', 'mb-3');
+
+  const btncontainer = document.createElement('div');
+  btncontainer.classList.add('d-flex', 'flex-column');
+
+  const btncreate = document.createElement('button');
+  btncreate.innerText = 'Create account';
+  btncreate.classList.add('btn', 'btn-outline-primary');
+
+  btncreate.addEventListener('click', () =>
+    window.open('/views/login.html', '__self')
+  );
+
+  const btnlogin = document.createElement('button');
+  btnlogin.innerText = 'Log in';
+  btnlogin.classList.add(
+    'btn',
+    'mt-1',
+    'btn-outline-primary',
+    'border-0',
+    'text-dark',
+    'btn-login'
+  );
+
+  btnlogin.addEventListener('click', () =>
+    window.open('/views/login.html', '__self')
+  );
+
+  btncontainer.append(btncreate, btnlogin);
+  cardbody.append(title, p, btncontainer);
+  card.appendChild(cardbody);
+
+  container.appendChild(card);
+
+  return container;
+};
+
+const groupTagPosts = (title) => {
+  const tagList = document.createElement('ul');
+  tagList.classList.add('list-group', 'mb-4');
+  const tagTitle = document.createElement('li');
+  tagTitle.classList.add('list-group-item', 'fw-bold');
+  tagTitle.textContent = `#${title}`;
+  tagList.appendChild(tagTitle);
+
+  return tagList;
+};
+
+const asidePosts = (data) => {
+  const { id, title } = data;
+
+  const listItem = document.createElement('li');
+  listItem.classList.add('list-group-item');
+  listItem.style.cssText = 'cursor: pointer';
+
+  listItem.addEventListener('click', () => {
+    window.open(`./views/post.html?id=${id}`, '_self');
+  });
+
+  const titleElement = document.createElement('h5');
+  titleElement.textContent = title;
+
+  const commentsElement = document.createElement('p');
+  commentsElement.classList.add('mb-0', 'comments-text'); // Agregar la clase "comments-text"
+  commentsElement.textContent = '0 comentarios';
+
+  listItem.appendChild(titleElement);
+  listItem.appendChild(commentsElement);
+
+  return listItem;
+};
+
+export {
+  createPost,
+  createUniquePost,
+  createTags,
+  createSimplePost,
+  createLogoutedButtons,
+  createLoggedButtons,
+  createUnloggAside,
+  groupTagPosts,
+  asidePosts,
+};

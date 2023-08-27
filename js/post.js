@@ -28,16 +28,21 @@ const renderPost = (data) => {
     content,
   } = data;
 
+  document.title = title;
+
   createUniquePost('author-post', author, false);
   createUniquePost('picauthor-post', profilePic, true);
-
-  //createUniquePost('picauthor-nav', localStorage.getItem('image');, true);
 
   createUniquePost('date-post', date, false);
   createUniquePost('img-post', img, true);
   createUniquePost('title-post', title, false);
   createUniquePost('content-post', content, false);
-  createUniquePost('comments-image-post', localStorage.getItem('image'), true);
+  createUniquePost(
+    'comments-image-post',
+    localStorage.getItem('image') ||
+      'https://res.cloudinary.com/practicaldev/image/fetch/s--V3djhsWJ--/c_limit,f_auto,fl_progressive,q_auto,w_256/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8j7kvp660rqzt99zui8e.png',
+    true
+  );
   createUniquePost('comments-total-post', comments, false);
 
   document.getElementById('tags-post').append(createTags(tags));
