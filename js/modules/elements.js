@@ -654,7 +654,7 @@ const groupTagPosts = (title) => {
   tagList.classList.add('list-group', 'mb-4');
   const tagTitle = document.createElement('li');
   tagTitle.classList.add('list-group-item', 'fw-bold');
-  tagTitle.textContent = `#${title}`;
+  tagTitle.textContent = `${title}`;
   tagList.appendChild(tagTitle);
 
   return tagList;

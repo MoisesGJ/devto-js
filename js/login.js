@@ -26,6 +26,7 @@ document
       localStorage.setItem('image', profilePic);
       window.open('../index.html');
     } else {
+      alert(res.error);
       console.log('Error', res);
     }
   });

@@ -91,8 +91,8 @@ const renderPostsTagAside = (data, tag) => {
 renderData(orderData(data, 'relevant'));
 renderPostAside(data, 'aside__main');
 
-const firsttag = 'html';
-const secondtag = 'css';
+const firsttag = '#html';
+const secondtag = '#css';
 
 renderPostsTagAside(orderAside(data, firsttag), firsttag);
 renderPostsTagAside(orderAside(data, secondtag), secondtag);
