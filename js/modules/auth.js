@@ -1,6 +1,7 @@
 import { createLogoutedButtons, createLoggedButtons } from './elements.js';
 
 const token = localStorage.getItem('token');
+
 const tokenValidation = () =>
   token ? createLoggedButtons() : createLogoutedButtons();
 
