@@ -390,7 +390,7 @@ const createLogoutedButtons = () => {
   const createAccountButtonContainer = document.createElement('div');
 
   const createAccountAnchorButton = document.createElement('a');
-  createAccountAnchorButton.setAttribute('href', '/views/login.html');
+  createAccountAnchorButton.setAttribute('href', '/views/create-account.html');
   createAccountAnchorButton.setAttribute('data-tracking-id', 'ca_top_nav');
   createAccountAnchorButton.setAttribute('data-tracking-source', 'top_navbar');
   createAccountAnchorButton.classList.add(
@@ -622,7 +622,7 @@ const createUnloggAside = () => {
   btncreate.classList.add('btn', 'btn-outline-primary');
 
   btncreate.addEventListener('click', () =>
-    window.open('/views/login.html', '__self')
+    window.open('/views/create-account.html', '__self')
   );
 
   const btnlogin = document.createElement('button');
@@ -654,7 +654,7 @@ const groupTagPosts = (title) => {
   tagList.classList.add('list-group', 'mb-4');
   const tagTitle = document.createElement('li');
   tagTitle.classList.add('list-group-item', 'fw-bold');
-  tagTitle.textContent = `#${title}`;
+  tagTitle.textContent = `${title}`;
   tagList.appendChild(tagTitle);
 
   return tagList;

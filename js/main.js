@@ -8,6 +8,7 @@ import {
 import { getPosts } from './modules/api.js';
 import { orderData, orderAside } from './modules/orders.js';
 import { tokenValidation, booleanAuth } from './modules/auth.js';
+import { getPPM, getExplicitDate } from './modules/time.js';
 
 let loggedButtonsValidation = document.getElementById(
   'authentication-top-nav-actions'
@@ -26,16 +27,24 @@ if (!booleanAuth()) {
 const processData = async () => {
   const dataposts = await getPosts();
 
-  const keys = Object.keys(dataposts);
+  dataposts.posts;
 
-  const array = keys.reduce((accum, key) => {
-    const currobj = dataposts[key];
+  return dataposts.posts.map((post) => {
+    const { _id, user, created_at, image, body } = post;
 
-    currobj['id'] = key;
-
-    return [...accum, currobj];
-  }, []);
-  return array;
+    return {
+      id: _id,
+      author: user.name,
+      profilePic: user.profilePic,
+      date: getExplicitDate(new Date(created_at)),
+      img: image,
+      comments: 0,
+      readtime: 0,
+      content: body,
+      readtime: getPPM(body),
+      ...post,
+    };
+  });
 };
 
 const main = document.getElementById('cards-main');
@@ -82,8 +91,8 @@ const renderPostsTagAside = (data, tag) => {
 renderData(orderData(data, 'relevant'));
 renderPostAside(data, 'aside__main');
 
-const firsttag = 'html';
-const secondtag = 'css';
+const firsttag = '#html';
+const secondtag = '#css';
 
 renderPostsTagAside(orderAside(data, firsttag), firsttag);
 renderPostsTagAside(orderAside(data, secondtag), secondtag);
@@ -111,7 +120,6 @@ const inputs = document.querySelectorAll('.input-main');
 
 inputs.forEach((input) => {
   input.addEventListener('keyup', (event) => {
-    console.log('Hola');
     const value = event.target.value;
     const filteredData = data.filter((item) =>
       item.title.toLowerCase().includes(value.toLowerCase())

@@ -14,41 +14,47 @@ let data = {};
 let validate = true;
 !booleanAuth() && (validate = false);
 
-document
+/* document
   .getElementById('form-control-post')
   .addEventListener('keyup', ({ target }) => {
     const { value, name } = target;
     data[name] = value;
-  });
+  }); */
 
 const createData = (dataobj) => {
   const random = Math.floor(Math.random() * 10) + 1;
-  dataobj['author'] = localStorage.getItem('author');
-  dataobj['profilePic'] = localStorage.getItem('image');
-
-  dataobj['date'] = getExplicitDate(new Date());
+  dataobj['user'] = localStorage.getItem('token');
   dataobj['comments'] = 0;
   dataobj['relevant'] = random % 2 == 0 ? true : false;
   dataobj['rank'] = random;
+  dataobj['image'] = inputimage.value;
+  dataobj['title'] = document.getElementById('floatingTitle').value;
+  dataobj['body'] = document.getElementById('floatingTextarea-content').value;
 
-  const processtags = dataobj['tags'].split(' ');
+  const processtags = document.getElementById('form-tags').value;
 
   let finaltags = [];
-  processtags.forEach((item) => item.length > 0 && finaltags.push('#' + item));
+  processtags
+    .split(' ')
+    .forEach((item) => item.length > 0 && finaltags.push('#' + item));
   dataobj['tags'] = finaltags;
-
-  const words = '' + dataobj['content'];
-  dataobj['readtime'] = getPPM(words);
 
   return dataobj;
 };
 
-document.getElementById('btn-submit').addEventListener('click', () => {
-  if (validate) {
-    const objfin = createData(data);
-    postPosts(objfin);
-    window.open('../index.html');
-  } else {
-    window.location.reload();
-  }
-});
+document
+  .getElementById('btn-submit')
+  .addEventListener('click', async (event) => {
+    if (validate) {
+      event.preventDefault();
+      const objfin = createData(data);
+      const res = await postPosts(objfin);
+      if (res.message) {
+        window.open('../index.html');
+      } else {
+        alert('Error');
+      }
+    } else {
+      window.location.reload();
+    }
+  });
