@@ -2,6 +2,7 @@ import { getUniquePost } from './modules/api.js';
 import { createUniquePost } from './modules/elements.js';
 import { createTags } from './modules/elements.js';
 import { tokenValidation } from './modules/auth.js';
+import { getExplicitDate } from './modules/time.js';
 
 let loggedButtonsValidation = document.getElementById(
   'authentication-top-nav-actions'
@@ -17,26 +18,25 @@ const data = await getUniquePost(currentid);
 
 const renderPost = (data) => {
   const {
-    author,
-    profilePic,
-    date,
-    img,
+    user,
+    created_at,
+    image,
     title,
     tags,
     reacts,
-    comments,
-    content,
-  } = data;
+    comments = 0,
+    body,
+  } = data.post;
 
   document.title = title;
 
-  createUniquePost('author-post', author, false);
-  createUniquePost('picauthor-post', profilePic, true);
+  createUniquePost('author-post', user.name, false);
+  createUniquePost('picauthor-post', user.profilePic, true);
 
-  createUniquePost('date-post', date, false);
-  createUniquePost('img-post', img, true);
+  createUniquePost('date-post', getExplicitDate(new Date(created_at)), false);
+  createUniquePost('img-post', image, true);
   createUniquePost('title-post', title, false);
-  createUniquePost('content-post', content, false);
+  createUniquePost('content-post', body, false);
   createUniquePost(
     'comments-image-post',
     localStorage.getItem('image') ||
