@@ -23,7 +23,6 @@ const renderPost = (data) => {
     image,
     title,
     tags,
-    reacts,
     comments = 0,
     body,
   } = data.post;

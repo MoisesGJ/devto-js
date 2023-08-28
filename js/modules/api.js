@@ -7,12 +7,14 @@ const getPosts = async () => {
 };
 
 const postPosts = async (data) => {
+  const [header, payload, validate] = data.user.split('.');
+  const { id } = JSON.parse(atob(payload));
+
+  data.user = id;
+
   const res = await fetch(`${BASE_URI}/posts`, {
     method: 'POST',
-    headers: new Headers({
-      Authorization: 'Basic ' + localStorage.getItem('token'),
-      'Content-Type': 'application/x-www-form-urlencoded',
-    }),
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
 
@@ -67,8 +69,6 @@ const logIn = async (data) => await createToken(data);
 const getDataUser = async (token) => {
   const [header, payload, validate] = token.split('.');
   const { id } = JSON.parse(atob(payload));
-
-  console.log('id', id);
 
   const res = await fetch(`${BASE_URI}/users/${id}`);
 
